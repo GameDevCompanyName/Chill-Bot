@@ -9,6 +9,8 @@ public abstract class ChatBot {
 
     protected abstract String getName();
 
+    protected abstract String getDescription();
+
     /**
      * Данный блок методов содержит методы для отправки сообщений разных
      * типов серверу. Данные методы будут просто вызывать внешний класс

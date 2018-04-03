@@ -11,6 +11,7 @@ public class Connector extends Thread{
     @Override
     public void start() {
         //создание соединения
+        //TODO
     }
 
     /**

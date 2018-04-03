@@ -4,12 +4,21 @@ import gdcn.ChillChat.ChatBot;
 
 public class BasicBot extends ChatBot {
 
-    private final String botName = "Бот, который любит здороваться";
+    private final String botName = "Бот-Здрователь";
+
+    private final String description =
+            "Бот здоровается со всеми подключающимися юзерами.";
+
 
 
     @Override
     protected String getName() {
         return botName;
+    }
+
+    @Override
+    protected String getDescription() {
+        return description;
     }
 
     @Override
