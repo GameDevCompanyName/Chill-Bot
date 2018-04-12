@@ -11,10 +11,7 @@ class TavernBot : ChatBot() {
 
         override fun getDescription(): String { return description }
 
-
-        override fun incomingUserMessage(name: String?, text: String?, roomId: String?) {
-
-        }
+        override fun incomingUserMessage(name: String?, text: String?, roomId: String?) { TODO() }
 
         override fun incomingServerMessage(text: String?, roomId: String?) {
                 TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
