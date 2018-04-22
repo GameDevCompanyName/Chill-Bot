@@ -55,5 +55,7 @@ class Dish(private var name: String,
         return result
     }
 
-
+    override fun toString(): String{
+        return name
+    }
 }

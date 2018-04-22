@@ -10,9 +10,9 @@ class Content {
     private var dishes = this.loadDishes("resources/bots/TavernBot/disheslist")
 
     //Loading the list of dishes into TreeSet
-    private fun loadDishes(adress: String): TreeSet<Dish> {
+    private fun loadDishes(adress: String): List<Dish> {
         val inputstream: InputStream = File(adress).inputStream()
-        val dishesSet = TreeSet<Dish>()
+        val dishesSet = mutableListOf<Dish>()
         val input = inputstream.bufferedReader()
         var line = input.readLine()
 
@@ -36,9 +36,9 @@ class Content {
     private fun loadStrings(adress: String): List<String> {
         val inputstream: InputStream = File(adress).inputStream()
         val stringList = mutableListOf<String>()
-
         val input = inputstream.bufferedReader()
         var line = input.readLine()
+
         while (line != null) {
             if (line == "***") continue
             else stringList.add(line)
@@ -55,7 +55,7 @@ class Content {
         return stories
     }
 
-    fun getDishes(): TreeSet<Dish> {
+    fun getDishes(): List<Dish> {
         return dishes
     }
 
