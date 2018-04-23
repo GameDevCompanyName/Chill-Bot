@@ -2,7 +2,7 @@ package examples.TavernBot
 
 import java.io.File
 import java.io.InputStream
-import java.util.TreeSet
+import java.util.*
 
 class Content {
     private var phrases = this.loadStrings("resources/bots/TavernBot/phrases")
@@ -19,12 +19,13 @@ class Content {
         while (line != null) {
             val dish = Dish("", "", "")
             while (!line.matches(Regex("^\\*\\*\\*$"))) {
-                if (line.matches(Regex("^name = \\w+$")))
+                if (line.matches(Regex("^name = [\\D\\d]+\$")))
                     dish.setName(line)
-                if (line.matches(Regex("^describtion = \\w+$")))
+                if (line.matches(Regex("^description = [\\D\\d]+\$")))
                     dish.setDescription(line)
                 if (line.matches(Regex("^photo = \\w+$")))
                     dish.setPhoto(line)
+                line = input.readLine()
             }
             dishesSet.add(dish)
             line = input.readLine()
@@ -40,7 +41,10 @@ class Content {
         var line = input.readLine()
 
         while (line != null) {
-            if (line == "***") continue
+            if (line == "***") {
+                line = input.readLine()
+                continue
+            }
             else stringList.add(line)
             line = input.readLine()
         }

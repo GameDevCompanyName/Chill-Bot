@@ -2,7 +2,6 @@ package examples.TavernBot
 
 import gdcn.ChillChat.ChatBot
 import java.util.*
-import java.util.regex.Pattern.matches
 
 class TavernBot : ChatBot() {
 
@@ -13,17 +12,25 @@ class TavernBot : ChatBot() {
     private val storiesSize = content.getStories().size
     private val dishesSize = content.getDishes().size
     private var random = Random()
+    private var bufferDish = arrayOf<Dish>()
+    private var number: Int = 0
 
+    //Generation of offered dishes
     private fun findDishes(): String {
-        val message = content.getPhrases().get(random.nextInt(phrasesSize + 1)) +
-                "1. ${content.getDishes().get(random.nextInt(dishesSize + 1))} " +
-                "2. ${content.getDishes().get(random.nextInt(dishesSize + 1))} "
-        "3. ${content.getDishes().get(random.nextInt(dishesSize + 1))}"
+        bufferDish[0] = content.getDishes()[random.nextInt(dishesSize + 1)]
+        bufferDish[1] = content.getDishes()[random.nextInt(dishesSize + 1)]
+        bufferDish[2] = content.getDishes()[random.nextInt(dishesSize + 1)]
+        val message = "Выбирай мудро " + "1. ${bufferDish[0]} " + "2. ${bufferDish[1]} "+ "3. ${bufferDish[2]}"
         return message
     }
 
-    private fun cook() {
-        //TODO
+    private fun cook(number: Int): String {
+        val dish = bufferDish[number - 1]
+        return "Прошу, " + dish.getDescription() //+ dish.getPhoto()
+    }
+
+    fun getContent(): Content{
+        return content
     }
 
     override fun getName(): String {
@@ -38,9 +45,22 @@ class TavernBot : ChatBot() {
         var message = String()
         if (text != null) {
             when {
-                text == "Трактирщик, привет" -> message = "И тебе привет, путник"
-                text == "Трактирщик, что сегодня на кухне?" -> message = findDishes()
-                text.matches(Regex("^Трактирщик,\\s*\\d$")) -> message = "Пару минут и все будет готово"
+                text == "Трактирщик, привет" ->
+                    message = "И тебе привет, путник"
+                text == "Трактирщик, обнови меню" -> {
+                    content.refresh()
+                    message = "Меню обновлено"
+                }
+                text == "Трактирщик, что сегодня на кухне?" ->
+                    message = findDishes()
+                text == "Трактирщик, расскажи историю" ->
+                    message = content.getStories()[random.nextInt(storiesSize + 1)]
+                text.matches(Regex("^Трактирщик,\\s*\\d$")) -> {
+                    number = text.split(Regex(" "))[1].toInt()
+                    message = content.getPhrases()[random.nextInt(phrasesSize + 1)]
+                    sendMessage(message, roomId)
+                    message = cook(number)
+                }
             }
         }
         sendMessage(message, roomId)

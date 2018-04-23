@@ -28,13 +28,6 @@ class Dish(private var name: String,
         this.photo = adress
     }
 
-    fun compare(dish1: Dish, dish2: Dish): Dish {
-        return if (dish1.getName().equals(dish2.getName()))
-            dish1
-        else
-            dish2
-    }
-
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
