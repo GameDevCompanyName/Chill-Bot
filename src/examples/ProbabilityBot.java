@@ -16,7 +16,8 @@ public class ProbabilityBot extends ChatBot {
     }
     @Override
     protected void incomingUserMessage(String name, String text, String roomId) {
-        if (text.contains("бот") && text.contains("вероятность")) {
+        if (text.contains("вероятностный бот") && text.contains("вероятность")
+                && (text.contains("посчитай") || text.contains("скажи"))) {
             sendMessage(calculateProb(), roomId);
         }
     }
