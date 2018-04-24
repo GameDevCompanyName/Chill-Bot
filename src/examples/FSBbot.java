@@ -16,7 +16,7 @@ public class FSBbot extends ChatBot {
 
     @Override
     protected void incomingUserMessage(String name, String text, String roomId) {
-        if (text.contains("путин") || text.contains("путен"))
+        if (text.contains(("путин").toLowerCase()) || text.contains(("путен").toLowerCase()))
             sendMessage("кхм-кхм", roomId);
     }
     //Бот на это никак не реагирует
@@ -33,7 +33,7 @@ public class FSBbot extends ChatBot {
 
     @Override
     protected void userConnected(String name, String roomId) {
-        if (name.equals("Igorlo"))
+        if (name.equals(("Igorlo").toLowerCase()))
             sendMessage("А можно ваши ключики?", roomId);
     }
 

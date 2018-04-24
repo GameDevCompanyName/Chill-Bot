@@ -16,18 +16,19 @@ public class ProbabilityBot extends ChatBot {
     }
     @Override
     protected void incomingUserMessage(String name, String text, String roomId) {
-        if (text.contains("вероятностный бот") && text.contains("вероятность")
-                && (text.contains("посчитай") || text.contains("скажи"))) {
+        if (text.contains(("вероятностный бот").toLowerCase()) && text.contains(("вероятность").toLowerCase())
+                && (text.contains(("посчитай").toLowerCase()) || text.contains(("скажи").toLowerCase()))) {
             sendMessage(calculateProb(), roomId);
         }
     }
-    //Бот на это никак не реагирует
+    //Триггерим бота на ключевые слова
 
     private String calculateProb(){
         Random rand = new Random();
         int n = rand.nextInt(100);
         return "Вероятность события будет" + n + "%";
     }
+    //Считаем случайное число
 
     @Override
     protected void incomingServerMessage(String text, String roomId) {
@@ -41,10 +42,7 @@ public class ProbabilityBot extends ChatBot {
 
     @Override
     protected void userConnected(String name, String roomId) {
-
-        //При входе нового пользователя, бот скажет ему "привет",
-        //отправив сообщение в комнату, в которой произошло событие
-
+        //Бот на это никак не геагирует
     }
 
     @Override
