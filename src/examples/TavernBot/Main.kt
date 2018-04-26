@@ -9,4 +9,6 @@ fun main(args: Array<String>) {
         println(elem.getDescription())
     }
 
+    println (bot.tellStory().toString())
+
 }

@@ -29,6 +29,31 @@ class TavernBot : ChatBot() {
         return "Прошу, " + dish.getDescription() //+ dish.getPhoto()
     }
 
+    public fun tellStory(): List<String> {
+        /*val story = content.getStories()[random.nextInt(storiesSize )]
+        val storyList = mutableListOf<String>()
+        var oneMessageString = ""
+
+        for (i in 0..story.length) {
+            if (i < story.length-150 || i%150 == 0) {
+                for (j in i..(i + 150)) {
+                    oneMessageString += story[j]
+                }
+                storyList.add(oneMessageString)
+                oneMessageString = ""
+            }
+            else if (i >= story.length){
+                for (j in i..story.length) {
+                    oneMessageString += story[j]
+                }
+                storyList.add(oneMessageString)
+                oneMessageString = ""
+            }
+        }
+        return storyList*/
+        TODO()
+    }
+
     fun getContent(): Content{
         return content
     }
@@ -53,8 +78,7 @@ class TavernBot : ChatBot() {
                 }
                 text == "Трактирщик, что сегодня на кухне?" ->
                     message = findDishes()
-                text == "Трактирщик, расскажи историю" ->
-                    message = content.getStories()[random.nextInt(storiesSize + 1)]
+                text == "Трактирщик, расскажи историю" -> tellStory()
                 text.matches(Regex("^Трактирщик,\\s*\\d$")) -> {
                     number = text.split(Regex(" "))[1].toInt()
                     message = content.getPhrases()[random.nextInt(phrasesSize + 1)]
