@@ -1,5 +1,6 @@
 package examples.TavernBot
 
+import gdcn.ChillChat.BotMessages
 import gdcn.ChillChat.ChatBot
 import java.util.*
 
@@ -14,6 +15,11 @@ class TavernBot : ChatBot() {
     private var random = Random()
     private var bufferDish = arrayOf<Dish>()
     private var number: Int = 0
+
+    fun TavernBot() {
+        BotMessages.setBot(this)
+        BotMessages.start()
+    }
 
     //Generation of offered dishes
     private fun findDishes(): String {

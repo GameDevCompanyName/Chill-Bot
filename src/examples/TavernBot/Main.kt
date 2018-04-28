@@ -1,4 +1,5 @@
 package examples.TavernBot
+import examples.GooseBot
 
 fun main(args: Array<String>) {
     val bot = TavernBot()
@@ -9,6 +10,20 @@ fun main(args: Array<String>) {
         println(elem.getDescription())
     }
 
-    println (bot.tellStory().toString())
 
+    val bot2 = GooseBot()
+    println(bot2.getGooseList()[0])
+    println("░ГУСЯ░▄▀▀▀▄░РАБОТЯГИ░░\n" +
+    "▄███▀░◐░░░▌░░░░░░░\n" +
+    "░░░░▌░░░░░▐░░░░░░░\n" +
+    "░░░░▐░░░░░▐░░░░░░░\n" +
+    "░░░░▌░░░░░▐▄▄░░░░░\n" +
+    "░░░░▌░░░░▄▀▒▒▀▀▀▀▄\n" +
+   "░░░▐░░░░▐▒▒▒▒▒▒▒▒▀▀▄\n" +
+    "░░░▐░░░░▐▄▒▒▒▒▒▒▒▒▒▒▀▄\n" +
+    "░░░░▀▄░░░░▀▄▒▒▒▒▒▒▒▒▒▒▀▄\n" +
+    "░░░░░░▀▄▄▄▄▄█▄▄▄▄▄▄▄▄▄▄▄▀▄\n" +
+    "░░░░░░░░░░░▌▌░▌▌░░░░░\n" +
+    "░░░░░░░░░░░▌▌░▌▌░░░░░\n" +
+    "░░░░░░░░░▄▄▌▌▄▌▌░░░░░\n")
 }
