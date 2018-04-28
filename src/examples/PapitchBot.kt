@@ -4,19 +4,20 @@ import gdcn.ChillChat.BotMessages
 import gdcn.ChillChat.ChatBot
 import java.io.File
 import java.io.InputStream
+import java.util.*
 
-class GooseBot : ChatBot() {
-
+class PapitchBot : ChatBot() {
     private val botName: String = "Сборище гусей"
     private val description: String = "Запускаем гуся, работяги"
+    private val random = Random()
 
     fun GooseBot() {
         BotMessages.setBot(this)
         BotMessages.start()
     }
 
-    fun getGooseList(): List<String> {
-        val inputstream: InputStream = File("resources/bots/GooseBot/gooselist").inputStream()
+    fun getPapitchPhrases(): List<String> {
+        val inputstream: InputStream = File("resources/bots/PapitchBot/phrases").inputStream()
         val stringList = mutableListOf<String>()
         val input = inputstream.bufferedReader()
         var line = input.readLine()
@@ -42,10 +43,9 @@ class GooseBot : ChatBot() {
     override fun incomingUserMessage(name: String?, text: String?, roomId: String?) {
         var message = "ошибка"
         if (text != null) {
-            when (text) {
-                "Бот, запусти гуся" -> message = getGooseList()[0]
-                "Бот, запусти гуся-гидру" -> message = getGooseList()[1]
-            }
+            val phrases = getPapitchPhrases()
+            if (text.contains("папич"))
+                message = phrases[random.nextInt(phrases.size)]
         }
         sendMessage(message, roomId)
     }
@@ -56,6 +56,9 @@ class GooseBot : ChatBot() {
 
     override fun userConnected(name: String?, roomId: String?) {}
 
-    override fun userKicked(name: String?, reason: String?, roomId: String?) {}
+    override fun userKicked(name: String?, reason: String?, roomId: String?) {
+        sendMessage("СОСАТЬ + ЛЕЖАТЬ", roomId)
+    }
+
 
 }
