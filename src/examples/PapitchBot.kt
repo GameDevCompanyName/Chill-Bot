@@ -7,11 +7,11 @@ import java.io.InputStream
 import java.util.*
 
 class PapitchBot : ChatBot() {
-    private val botName: String = "Сборище гусей"
-    private val description: String = "Запускаем гуся, работяги"
+    private val botName: String = "Частичка папича"
+    private val description: String = "Величайший"
     private val random = Random()
 
-    fun GooseBot() {
+    fun PapitchBot() {
         BotMessages.setBot(this)
         BotMessages.start()
     }
@@ -26,7 +26,7 @@ class PapitchBot : ChatBot() {
             if (line == "***") {
                 line = input.readLine()
                 continue
-            } else stringList.add(line)
+            } else stringList.add(line.replace("\\n", "\n"))
             line = input.readLine()
         }
         return stringList

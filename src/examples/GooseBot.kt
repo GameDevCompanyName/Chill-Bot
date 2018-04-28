@@ -25,7 +25,7 @@ class GooseBot : ChatBot() {
             if (line == "***") {
                 line = input.readLine()
                 continue
-            } else stringList.add(line)
+            } else stringList.add(line.replace("\\n", "\n"))
             line = input.readLine()
         }
         return stringList
